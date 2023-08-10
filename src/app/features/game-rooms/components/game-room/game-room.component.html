@@ -1,0 +1,17 @@
+<div *ngIf="gameRoom" class="d-flex justify-content-center">
+    <div>
+        <div>Id: {{gameRoom.id}} <button mat-raised-button [cdkCopyToClipboard]="gameRoom.id">Copy</button></div>
+        <div mat-subheader>Players:</div>
+        <mat-list role="list">
+            <mat-list-item *ngFor="let player of gameRoom.players" role="listitem">
+                <mat-icon matListItemIcon [style.color]="player.color">format_color_fill</mat-icon>
+                <span matListItemTitle>{{player.nickname}}</span>
+            </mat-list-item>
+        </mat-list>
+
+        <div class="d-flex gap-3">
+            <button mat-raised-button color="warn" (click)="leaveRoomClicked()">Left room</button>
+            <button mat-raised-button color="primary" (click)="startGameClicked()">Start game</button>
+        </div>
+    </div>
+</div>

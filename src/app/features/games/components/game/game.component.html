@@ -1,0 +1,19 @@
+<div *ngIf="game" class="d-flex justify-content-center gap-3">
+    <div class="boundary-container">
+        <div class="boundary" [style.width.px]="game.fieldSize.width" [style.height.px]="game.fieldSize.height">
+            <div *ngFor="let gameUnit of game.gameUnits" class="box" [style.background-color]="gameUnit.player.color"
+                [style.width.px]="game.gameUnitSize.width" [style.height.px]="game.gameUnitSize.height" cdkDrag
+                cdkDragBoundary=".boundary" [cdkDragFreeDragPosition]="{x:gameUnit.position.x, y:gameUnit.position.y}"
+                [cdkDragDisabled]="dragDisabled(gameUnit)" (cdkDragEnded)="onDragEnded($event, gameUnit)">
+                <mat-icon *ngIf="game.currentTurn.nickname === gameUnit.player.nickname" aria-hidden="false"
+                    aria-label="Turn" fontIcon="bolt">
+                </mat-icon>
+                {{gameUnit.player.nickname}}
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="game.chatId" class="chat-container" [style.height.px]="game.fieldSize.height - 32">
+        <app-chat [chatId]="game.chatId"></app-chat>
+    </div>
+</div>

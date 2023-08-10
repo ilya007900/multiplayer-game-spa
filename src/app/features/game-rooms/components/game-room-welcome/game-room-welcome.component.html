@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-center">
+    <div>
+        <div class="d-flex flex-column container">
+            <mat-error *ngIf="error" class="mb-3 text-center">{{error}}</mat-error>
+
+            <mat-form-field>
+                <mat-label>Nickaname</mat-label>
+                <input matInput [formControl]="nicknameControl" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Color</mat-label>
+                <input type="color" matInput [formControl]="colorControl" required>
+            </mat-form-field>
+            <mat-form-field *ngIf="showJoinForm">
+                <mat-label>Room Id</mat-label>
+                <input matInput [formControl]="gameRoomIdControl" required>
+            </mat-form-field>
+        </div>
+        <div class="d-flex gap-3 justify-content-end">
+            <button *ngIf="showJoinForm" mat-raised-button (click)="onBackClick()">Back</button>
+
+            <button mat-raised-button color="primary" [disabled]="joinGameRoomDisabled()"
+                (click)="onJoinGameRoomClick()">Join
+            </button>
+
+            <button *ngIf="!showJoinForm" mat-raised-button color="primary" [disabled]="createGameRoomDisabled()"
+                (click)="onCreateRoomClick()">Create
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div *ngIf="chat" class="d-flex flex-column h-100 justify-content-between gap-3">
+    <div class="d-flex flex-column gap-3 overflow-auto">
+        <div *ngFor="let message of chat.messages">
+            {{message.sentDateTime | date:'HH:mm'}} {{message.from}}: {{message.text}}
+        </div>
+    </div>
+    <div>
+        <mat-form-field appearance="outline" class="message-field">
+            <mat-label>Write a text message</mat-label>
+            <input matInput placeholder="Text" [(ngModel)]="message">
+            <button *ngIf="message" matSuffix mat-icon-button aria-label="Send" (click)="onSendClick()">
+                <mat-icon>send</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+</div>
